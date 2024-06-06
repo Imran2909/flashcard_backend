@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>hgfwkduwgdy</h1>
+    <div id="image">
+
+    </div>
+</body>
+
+</html>
+
+<script>
+const container = document.getElementById('image');
+    fetch("http://localhost:8080/cards").then((res) => {
+        return res.json()
+    }).then((res) => {
+        console.log(res);
+        res.forEach((el, id) => {
+            let pic = document.createElement('img')
+            pic.src = el.image
+            pic.width = 200; // Set width
+            pic.height = 150;
+            container.appendChild(pic);
+        });
+    })
+
+
+</script>
