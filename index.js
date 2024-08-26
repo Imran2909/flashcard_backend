@@ -49,12 +49,14 @@ app.delete("/cards/:id", async (req, res) => {
       if (!deletedCard) {
         return res.status(404).send({ msg: "Card not found" });
       }
-      const data = await cardModel.find({})
+      // Fetch the updated list of cards and sort them by `createdAt` in descending order
+      const data = await cardModel.find({}).sort({ createdAt: -1 });
       res.send({ msg: "Card deleted successfully", data: data });
     } catch (error) {
       res.send({ msg: "Cannot delete the card", error: error.message });
     }
   });
+  
 
 app.listen(8080, async () => {
     try {
